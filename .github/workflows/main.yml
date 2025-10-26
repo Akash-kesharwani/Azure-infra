@@ -1,6 +1,9 @@
 name: "This workflow belongs to todoMicroApp"
 
-on: workflow_dispatch
+on: 
+  push:
+    branch:
+    - main
 
 permissions:
   id-token: write
