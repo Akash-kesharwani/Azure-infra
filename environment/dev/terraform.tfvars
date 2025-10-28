@@ -8,5 +8,4 @@ admin_login = "sql_username"
 admin_pass = "Password@123"
 db_name = "sql_db"
 acr_name = "appacrakash01"
-
 max-size = "2"
