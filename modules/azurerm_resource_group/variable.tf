@@ -1,2 +1,6 @@
-variable "rgs_name" {}
-variable "rgs_location" {}
+
+variable "rgs" {
+  type = map(object({
+    location = string
+  }))
+}

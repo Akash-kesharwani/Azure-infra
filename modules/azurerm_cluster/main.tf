@@ -1,17 +1,26 @@
-resource "azurerm_kubernetes_cluster" "example" {
-  name                = var.aks_name
-  location            = var.aks_location
-  resource_group_name = var.aks_rg_name
-  dns_prefix          = "exampleaks1"
+resource "azurerm_kubernetes_cluster" "aks" {
+
+  for_each            = var.akss
+  name                = each.key
+  location            = each.value.location
+  resource_group_name = each.value.resource_group_name
+  dns_prefix          = each.value.dns_prefix
+
+
+  dynamic "default_node_pool" {
+    for_each = each.value.default_node_pool
+    content {
+      name       = default_node_pool.key
+      node_count = default_node_pool.value.node_count
+      vm_size    = default_node_pool.value.vm_size
+    }
+  }
+    
+    identity {
+      type = each.value.identity.type
+     } 
   
-
-  default_node_pool {
-    name       = "default"
-    node_count = 1
-    vm_size    = "Standard_D2as_v6"
-  }
-
-  identity {
-    type = "SystemAssigned"
-  }
 }
+
+
+ 
