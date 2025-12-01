@@ -2,7 +2,7 @@ name: "This workflow belongs to todoMicroApp"
 
 on: 
   push:
-    branch:
+    branches:
     - main
 
 permissions:
